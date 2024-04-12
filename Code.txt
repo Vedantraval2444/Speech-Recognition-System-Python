@@ -1,0 +1,17 @@
+import speech_recognition as sr
+
+# Initialize recognizer
+recognizer = sr.Recognizer()
+
+# Capture audio from the microphone
+with sr.Microphone() as source:
+    print("Listening...")
+    audio = recognizer.listen(source)
+
+# Recognize speech using Google Speech Recognition
+try:
+    print("Transcription: " + recognizer.recognize_google(audio))
+except sr.UnknownValueError:
+    print("Could not understand audio")
+except sr.RequestError as e:
+    print("Could not request results; {0}".format(e))
